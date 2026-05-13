@@ -1,9 +1,15 @@
 import { Resend } from 'resend'
 
-const resendApiKey = process.env.RESEND_API_KEY
-const resendFromEmail = process.env.RESEND_FROM_EMAIL
-const adminEmail = process.env.ADMIN_EMAIL
-const resend = new Resend(resendApiKey || '')
+let resendInstance: Resend | null = null
+
+function getResend() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) return null
+  if (!resendInstance) {
+    resendInstance = new Resend(apiKey)
+  }
+  return resendInstance
+}
 
 function parseInterests(interests: any) {
   if (Array.isArray(interests)) return interests
@@ -18,17 +24,20 @@ function parseInterests(interests: any) {
 }
 
 export async function sendLeadNotificationEmail(lead: any) {
-  if (!resendApiKey || !resendFromEmail || !adminEmail) {
-    const error = `⚠️ Email not sent. Missing: ${!resendApiKey ? 'RESEND_API_KEY' : ''} ${!resendFromEmail ? 'RESEND_FROM_EMAIL' : ''} ${!adminEmail ? 'ADMIN_EMAIL' : ''}`
-    console.error(error)
-    throw new Error(error)
+  const resend = getResend()
+  const fromEmail = process.env.RESEND_FROM_EMAIL
+  const adminEmail = process.env.ADMIN_EMAIL
+
+  if (!resend || !fromEmail || !adminEmail) {
+    console.warn('⚠️ Email not sent. Missing email configuration. Lead saved in DB.')
+    return
   }
 
   const interests = parseInterests(lead.interests)
 
   try {
     const response = await resend.emails.send({
-      from: `Kashi Journeys <${resendFromEmail}>`,
+      from: `Kashi Journeys <${fromEmail}>`,
       to: adminEmail,
       subject: `🔔 New Lead: ${lead.fullName} — ${lead.travelMonth}`,
       html: `
@@ -48,26 +57,28 @@ export async function sendLeadNotificationEmail(lead: any) {
     
     if (response.error) {
       console.error('Resend API error:', response.error)
-      throw new Error(`Email failed: ${response.error.message}`)
+      return
     }
     
-    console.log(`✅ Lead notification sent to ${adminEmail}`, response)
+    console.log(`✅ Lead notification sent to ${adminEmail}`)
     return response
   } catch (error) {
     console.error('Failed to send lead notification email:', error)
-    throw error
   }
 }
 
 export async function sendLeadConfirmationEmail(lead: any) {
-  if (!lead.email || !resendApiKey || !resendFromEmail) {
-    console.warn('⚠️ Confirmation email not sent. Missing email, API key, or from email.')
+  const resend = getResend()
+  const fromEmail = process.env.RESEND_FROM_EMAIL
+
+  if (!resend || !fromEmail || !lead.email) {
+    console.warn('⚠️ Confirmation email not sent. Missing configuration or customer email.')
     return
   }
 
   try {
     const response = await resend.emails.send({
-      from: `Kashi Journeys <${resendFromEmail}>`,
+      from: `Kashi Journeys <${fromEmail}>`,
       to: lead.email,
       subject: 'Your Varanasi trip enquiry is received! 🙏',
       html: `<p>Namaste ${lead.fullName},</p><p>We've received your request. A Varanasi expert will call you within 2 hours.</p>`,
