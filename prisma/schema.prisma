@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Lead {
+  id              String      @id @default(cuid())
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  fullName        String
+  whatsapp        String
+  email           String?
+
+  travelMonth     String
+  numberOfPax     Int
+  budgetRange     String
+  interests       String?  // JSON string of interests
+  specialRequests String?
+
+  source          String?
+  pageUrl         String?
+
+  status          LeadStatus  @default(NEW)
+  notes           String?
+  quotedPrice     Float?
+  finalPrice      Float?
+  margin          Float?
+
+  // One-to-one with Itinerary
+  itineraryId     String?     @unique
+  itinerary       Itinerary?  @relation(fields: [itineraryId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  QUOTED
+  CONVERTED
+  LOST
+}
+
+model Package {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  subtitle        String
+  description     String
+  highlights      String?  // JSON string of highlights
+  durationDays    Int
+  durationNights  Int
+  basePrice       Float
+  originalPrice   Float?
+  category        String
+  badge           String?
+  coverImage      String
+  isActive        Boolean  @default(true)
+  isFeatured      Boolean  @default(false)
+  sortOrder       Int      @default(0)
+}
+
+model Experience {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  description     String
+  shortDesc       String
+  duration        String
+  timeOfDay       String
+  price           Float
+  category        String
+  coverImage      String
+  highlights      String?  // JSON string of highlights
+  isActive        Boolean  @default(true)
+  isFeatured      Boolean  @default(false)
+  sortOrder       Int      @default(0)
+}
+
+model Itinerary {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  title           String
+  days            Int
+  totalEstimate   Float
+  shareToken      String   @unique @default(cuid())
+  days_data       Json
+
+  // Relation back to Lead
+  lead            Lead?
+}
+
+model Testimonial {
+  id              String   @id @default(cuid())
+  name            String
+  city            String
+  tripType        String
+  quote           String
+  rating          Int      @default(5)
+  isActive        Boolean  @default(true)
+  sortOrder       Int      @default(0)
+}
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  password        String   // bcrypt
+  role            String   @default("ADMIN")
+  createdAt       DateTime @default(now())
+
+  accounts        Account[]
+  sessions        Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
