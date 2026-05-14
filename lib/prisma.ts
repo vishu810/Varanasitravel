@@ -1,7 +1,23 @@
 import { PrismaClient } from '@prisma/client'
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient }
+const globalForPrisma = global as unknown as { prisma?: PrismaClient; [key: string]: any }
 
-export const prisma = globalForPrisma.prisma || new PrismaClient()
+function getPrismaClient() {
+  if (globalForPrisma.prisma) {
+    return globalForPrisma.prisma
+  }
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+  const prismaClientSingletonKey = '__prisma'
+  if (globalForPrisma[prismaClientSingletonKey]) {
+    return globalForPrisma[prismaClientSingletonKey]
+  }
+
+  const client = new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  })
+
+  globalForPrisma[prismaClientSingletonKey] = client
+  return client
+}
+
+export const prisma = getPrismaClient()
