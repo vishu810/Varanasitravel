@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         email: validated.email || null,
         travelMonth: validated.travelMonth,
         numberOfPax: validated.numberOfPax,
-        budgetRange: validated.budgetRange,
+        budgetRange: validated.budgetRange ?? 'Not specified',
         interests: validated.interests ? JSON.stringify(validated.interests) : null,
         specialRequests: validated.specialRequests,
         source: validated.source,

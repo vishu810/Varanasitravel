@@ -8,16 +8,18 @@ import { motion } from 'framer-motion'
 
 const interestsList = [
   { emoji: '🛕', label: 'Ganga Aarti' },
-  { emoji: '🚣', label: 'Boat Ride' },
-  { emoji: '🍜', label: 'Food Walk' },
-  { emoji: '🧘', label: 'Yoga & Meditation' },
-  { emoji: '🏺', label: 'Silk & Crafts' },
-  { emoji: '📸', label: 'Photography' },
+  { emoji: '🚣', label: 'Boat Ride on Ganga' },
+  { emoji: '🍜', label: 'Old City Food Walk' },
+  { emoji: '🧘', label: 'Yoga or Meditation' },
+  { emoji: '🏺', label: 'Silk Weaving Visit' },
+  { emoji: '📸', label: 'Photography Walk' },
+  { emoji: '🛕', label: 'Kashi Vishwanath Temple' },
+  { emoji: '🌿', label: 'Sarnath Day Trip' },
+  { emoji: '🎵', label: 'Classical Music Evening' },
 ]
 
 export default function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formStep, setFormStep] = useState(1)
   
   const {
     register,
@@ -64,16 +66,16 @@ export default function LeadForm() {
 
   return (
     <motion.div
-      className="mx-auto max-w-4xl rounded-2xl glass-card p-6 md:p-12 overflow-hidden"
+      className="mx-auto max-w-4xl rounded-2xl glass-card p-4 md:p-8 lg:p-12 overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
       {/* Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-6 md:mb-8">
         <motion.h2
-          className="font-display text-4xl md:text-5xl font-bold mb-3"
+          className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -81,7 +83,7 @@ export default function LeadForm() {
         >
           <span className="gold-shimmer">Plan My Varanasi Trip</span>
         </motion.h2>
-        <p className="text-lg text-[#C4BDB0]">60 seconds • Expert call in 2 hours • Free forever</p>
+        <p className="text-xs sm:text-sm md:text-base text-[#C4BDB0]">Fill this in and we will call you on WhatsApp. No cost, no obligation.</p>
       </div>
 
       {/* Form */}
@@ -150,7 +152,7 @@ export default function LeadForm() {
               {errors.travelMonth && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelMonth.message}</p>}
             </div>
             <div>
-              <label className="mb-2 block text-sm font-semibold text-[#714e16]">How many travelers? *</label>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">How many people are travelling? *</label>
               <input
                 type="number"
                 {...register('numberOfPax', { valueAsNumber: true })}
@@ -158,20 +160,6 @@ export default function LeadForm() {
                 className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
               />
             </div>
-          </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-[#714e16]">What's your budget per person? *</label>
-            <select
-              {...register('budgetRange')}
-              className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
-            >
-              <option value="">Select Budget</option>
-              <option>₹5,000 - ₹10,000</option>
-              <option>₹10,000 - ₹20,000</option>
-              <option>₹20,000 - ₹35,000</option>
-              <option>₹35,000+</option>
-            </select>
           </div>
         </motion.div>
 
@@ -183,7 +171,7 @@ export default function LeadForm() {
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <label className="block text-sm font-semibold text-[#714e16]">What interests you most?</label>
+          <label className="block text-sm font-semibold text-[#714e16]">What are you most interested in?</label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {interestsList.map(({ emoji, label }) => (
               <motion.button
@@ -213,7 +201,7 @@ export default function LeadForm() {
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <label className="mb-2 block text-sm font-semibold text-[#714e16]">Any special requests? (optional)</label>
+          <label className="mb-2 block text-sm font-semibold text-[#714e16]">Anything specific you want to do or avoid? (optional)</label>
           <textarea
             {...register('specialRequests')}
             rows={3}
@@ -240,13 +228,13 @@ export default function LeadForm() {
                 <span className="animate-spin">⏳</span> Submitting...
               </span>
             ) : (
-              'Get My Free Varanasi Plan →'
+              'Request a Free Call Back →'
             )}
           </button>
 
           <div className="flex items-center justify-center gap-2 text-xs text-[#8C7F6E]">
             <span>🔒</span>
-            <span>Your privacy is sacred. No spam, ever. One expert call guaranteed.</span>
+            <span>We do not spam. We do not share your details. One personal WhatsApp call — that is it.</span>
           </div>
         </motion.div>
       </form>

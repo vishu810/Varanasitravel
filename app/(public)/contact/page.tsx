@@ -8,8 +8,7 @@ export default function Contact() {
   const contactChannels = [
     { icon: '📱', label: 'WhatsApp', value: '+91 90535 38437', link: 'https://wa.me/919053538437' },
     { icon: '✉️', label: 'Email', value: 'vishu810singh@gmail.com', link: 'mailto:vishu810singh@gmail.com' },
-    { icon: '🕯️', label: 'Office', value: 'Varanasi, India', link: '#' },
-    { icon: '⏰', label: 'Response Time', value: '2 hours average', link: '#' },
+    { icon: '📍', label: 'Office', value: 'Varanasi, Uttar Pradesh, India', link: '#' },
   ]
 
   return (
@@ -27,7 +26,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="gold-shimmer">Get In Touch</span>
+            <span className="gold-shimmer">Contact Us</span>
           </motion.h1>
           <motion.p
             className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto"
@@ -35,7 +34,7 @@ export default function Contact() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            Have questions? We're here to help. Connect with us anytime, anywhere.
+            Use the form below or reach us directly on WhatsApp or email.
           </motion.p>
         </div>
       </section>
@@ -94,9 +93,9 @@ export default function Contact() {
                   <textarea rows={4} className="w-full px-4 py-2 rounded-lg bg-[rgba(248,230,209,0.45)] border border-[rgba(201,163,125,0.4)] text-[var(--text-primary)] focus:border-[#D97706] outline-none transition" placeholder="Your message here..." />
                 </div>
                 <button type="submit" className="w-full bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] font-bold py-3 rounded-lg hover:scale-[1.02] transition">
-                  Send Message
+                  Send →
                 </button>
-                {submitted && <p className="text-[#D97706] text-center font-semibold">✅ Message received! We'll respond within 2 hours.</p>}
+                {submitted && <p className="text-[#D97706] text-center font-semibold">✅ Message received! We'll respond personally.</p>}
               </form>
             </motion.div>
 
@@ -113,31 +112,22 @@ export default function Contact() {
                 <ul className="space-y-3 text-[var(--text-secondary)]">
                   <li className="flex gap-3">
                     <span className="text-xl">💬</span>
-                    <span>Questions about experiences or packages</span>
+                    <span>You want to know what experiences are actually available here</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-xl">🗺️</span>
-                    <span>Custom itinerary requests</span>
+                    <span>You want to plan a trip and need someone to talk it through with</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-xl">👥</span>
-                    <span>Group bookings or special events</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-xl">🎁</span>
-                    <span>Gift packages and corporate retreats</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-xl">🤝</span>
-                    <span>Partnership and collaboration opportunities</span>
+                    <span>You are travelling in a group or with family and want help structuring it</span>
                   </li>
                 </ul>
               </div>
 
               <div className="glass-card p-8 bg-gradient-to-br from-[var(--primary)/10] to-[var(--accent)/10] border-[rgba(217,119,6,0.3)]">
-                <h3 className="font-display text-2xl font-bold mb-3">Pro Tip 💡</h3>
                 <p className="text-[var(--text-secondary)]">
-                  WhatsApp is fastest! Our team usually responds within 30 minutes. <strong>Faster, warmer, and direct.</strong>
+                  WhatsApp is usually the fastest way to reach us. We respond personally — not through an automated system.
                 </p>
               </div>
 
@@ -173,7 +163,7 @@ export default function Contact() {
             />
           </motion.div>
           <p className="text-center text-[var(--text-secondary)] mt-6 text-sm">
-            📍 Based in Varanasi, India — at the spiritual riverfront of the city
+            📍 Based in Varanasi, Uttar Pradesh, India
           </p>
         </div>
       </section>

@@ -5,55 +5,47 @@ import Link from 'next/link'
 export default function Packages() {
   const packages = [
     {
-      tier: 'Kashi Darshan',
-      duration: '2 Nights / 3 Days',
-      price: '₹6,999',
-      description: 'Perfect for first-timers',
+      tier: 'Short Varanasi Visit',
+      duration: '1 to 2 Nights',
+      description: 'Good for people with limited time',
       color: 'from-[#D97706]/20 to-[#D97706]/5',
       includes: [
-        '🛕 Ganga Aarti ceremony (2 times)',
-        '🚣 Sacred boat ride at sunrise',
-        '🍜 Street food walk',
-        '🏨 3-star hotel stay',
-        '🧭 Expert guide',
-        '📱 24/7 WhatsApp support',
+        'Ganga Aarti at Dashashwamedh Ghat',
+        'Morning or evening boat ride on the Ganga',
+        'Walk through the old city lanes',
+        'One or two temple visits',
+        'Hotel stay arranged based on your preferences',
       ],
       highlight: false,
     },
     {
-      tier: 'Benaras Soul',
-      duration: '4 Nights / 5 Days',
-      price: '₹14,999',
-      description: 'Deep dive into Varanasi',
+      tier: 'Immersive Kashi',
+      duration: '3 to 4 Nights',
+      description: 'Enough time to go beyond the obvious',
       color: 'from-[#FBBF24]/20 to-[#FBBF24]/5',
       includes: [
-        '🛕 Daily Ganga Aarti + morning rituals',
-        '🚣 Extended boat explorations',
-        '🍜 Culinary heritage tour',
-        '🧘 Yoga & meditation session',
-        '🏺 Silk weaving workshop',
-        '🏨 4-star hotel',
-        '📸 Professional photography session',
-        '🎁 Local artisan gifts',
+        'Ganga Aarti viewing (multiple evenings)',
+        'Boat rides at different times of day',
+        'Kashi Vishwanath Temple visit',
+        'Food walk through old city lanes',
+        'Silk weaving workshop visit (Madanpura area)',
+        'Sarnath half-day trip — where Buddha gave his first sermon',
+        'Hotel stay arranged based on your preference',
       ],
       highlight: true,
     },
     {
-      tier: 'Sacred & Luxe',
-      duration: '3 Nights / 4 Days',
-      price: '₹24,999',
-      description: 'Premium spiritual experience',
+      tier: 'Extended Varanasi',
+      duration: '5 to 7 Nights',
+      description: 'For those who want to take their time',
       color: 'from-[#D97706]/20 to-[#D97706]/5',
       includes: [
-        '🛕 Private Ganga Aarti experience',
-        '🚣 Private boat with naturalist guide',
-        '🍽️ Michelin-trained chef meals',
-        '🧘 Private yoga sessions',
-        '🏺 VIP artisan studio access',
-        '5⭐ Luxury heritage hotel',
-        '📸 Personal photographer',
-        '🎁 Bespoke souvenir collection',
-        '✈️ Airport transfers included',
+        'Everything in Immersive Kashi above',
+        'Yoga or meditation session at the ghats',
+        'Classical music evening (Sankat Mochan or local venue)',
+        'Cooking class — Banarasi food',
+        'Photography-focused ghat walk',
+        'Day trip options: Chunar Fort, Vindhyachal, or Ramnagar Fort',
       ],
       highlight: false,
     },
@@ -90,7 +82,7 @@ export default function Packages() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="gold-shimmer">Curated Packages</span>
+            <span className="gold-shimmer">Trip Formats We Arrange</span>
           </motion.h1>
           <motion.p
             className="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto"
@@ -98,11 +90,10 @@ export default function Packages() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            From spiritual seekers to luxury travelers — a package for every soul.
+            These are rough outlines of how we typically structure trips to Varanasi. Nothing here is fixed — every trip is adjusted based on your dates, group, and what matters to you.
           </motion.p>
         </div>
       </section>
-
       {/* Packages Grid */}
       <section className="py-20 bg-[var(--bg-page)]">
         <div className="container mx-auto px-4">
@@ -121,11 +112,7 @@ export default function Packages() {
                 }`}
                 variants={itemVariants}
               >
-                {pkg.highlight && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] px-4 py-1 text-xs font-bold rounded-bl-lg">
-                    MOST POPULAR
-                  </div>
-                )}
+                {/* highlight badge removed per content rules */}
 
                 <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${pkg.color}`} />
 
@@ -133,57 +120,34 @@ export default function Packages() {
                 <p className="text-[#D97706] font-semibold mb-2">{pkg.duration}</p>
                 <p className="text-sm text-[var(--text-secondary)] mb-6">{pkg.description}</p>
 
-                <div className="mb-8 py-6 border-y border-[rgba(201,163,125,0.4)]">
-                  <div className="font-display text-4xl font-bold text-[#FBBF24]">{pkg.price}</div>
-                  <p className="text-xs text-[var(--text-secondary)] mt-1">per person</p>
-                </div>
-
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 text-sm text-[var(--text-secondary)]">
                   {pkg.includes.map((item, j) => (
-                    <li key={j} className="text-sm text-[var(--text-secondary)] flex items-start gap-2">
-                      <span className="flex-shrink-0">{item.substring(0, 1)}</span>
-                      <span>{item.substring(1)}</span>
-                    </li>
+                    <li key={j} className="flex items-start gap-2">• <span>{item}</span></li>
                   ))}
                 </ul>
 
                 <Link
-                  href="/#lead-form"
+                  href="/contact"
                   className="w-full block text-center bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] font-bold py-3 rounded-lg hover:scale-[1.02] transition"
                 >
-                  Customize This Package
+                  Ask About This →
                 </Link>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+      
 
-      {/* Why Choose Our Packages */}
-      <section className="py-20 bg-gradient-to-b from-[var(--bg-elevated)] to-[var(--bg-page)]">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-4xl font-bold text-center mb-12">Why Our Packages?</h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: '🎯', title: 'Personalized', desc: 'Modify any package to match your needs' },
-              { icon: '💰', title: 'Best Value', desc: 'More inclusions, better rates than competitors' },
-              { icon: '🤝', title: 'Local Impact', desc: '30% commission goes to local guides' },
-              { icon: '✨', title: 'Flexible', desc: 'Adjust dates, duration, or activities anytime' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                className="glass-card p-6 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="font-display text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-sm text-[var(--text-secondary)]">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+      {/* Simple note about packages */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 text-center">
+          <p className="max-w-2xl mx-auto text-[var(--text-secondary)]">
+            All trips are custom. These outlines exist to give you a starting point — not a fixed menu.
+          </p>
+          <p className="max-w-2xl mx-auto text-[var(--text-secondary)] mt-3">
+            Tell us what you are looking for and we will work from there.
+          </p>
         </div>
       </section>
 
@@ -197,13 +161,13 @@ export default function Packages() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-4xl font-bold mb-4">Didn't Find Your Perfect Package?</h2>
-            <p className="text-[var(--text-secondary)] text-lg mb-8">We customize everything. Tell us your dream, budget, and timeline.</p>
+            <h2 className="font-display text-4xl font-bold mb-4">None of these feel right?</h2>
+            <p className="text-[var(--text-secondary)] text-lg mb-8">That is fine. Tell us what you have in mind — we plan from scratch.</p>
             <Link
               href="/contact"
               className="inline-block bg-gradient-to-r from-[#D97706] to-[#FBBF24] px-8 py-3 rounded-lg font-bold text-[#0D0B08] hover:scale-105 transition"
             >
-              Reach Out to Plan Together →
+              Get In Touch →
             </Link>
           </motion.div>
         </div>

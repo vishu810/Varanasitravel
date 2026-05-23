@@ -6,7 +6,7 @@ export const leadSchema = z.object({
   email: z.string().email().optional().or(z.literal('')),
   travelMonth: z.string().min(1, 'Please select travel month'),
   numberOfPax: z.number().min(1).max(50),
-  budgetRange: z.string().min(1),
+  budgetRange: z.string().optional(),
   interests: z.array(z.string()).min(1, 'Please select at least one interest'),
   specialRequests: z.string().max(500).optional(),
   source: z.string().optional(),

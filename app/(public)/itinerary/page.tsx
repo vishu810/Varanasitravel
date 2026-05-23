@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 export default function Itinerary() {
   const steps = [
-    { num: '01', title: 'Tell Us About You', desc: 'Duration, budget, interests, and travel style', icon: '📝' },
-    { num: '02', title: 'We Design', desc: 'Our experts craft a personalized itinerary', icon: '✨' },
-    { num: '03', title: 'You Review', desc: 'Suggest changes, we refine', icon: '👀' },
-    { num: '04', title: 'Go Live', desc: 'Travel with our 24/7 support', icon: '🚀' },
+    { num: '01', title: 'Tell Us About Your Trip', desc: "Fill our short form. Tell us when you are travelling, who is coming, and what kind of trip you want — spiritual, cultural, food-focused, or just to see Varanasi properly for the first time.", icon: '📝' },
+    { num: '02', title: 'We Put Together a Plan', desc: "Based on what you tell us, we suggest an itinerary — which experiences, in what order, at what time of day, and why. We know what works and what does not.", icon: '✨' },
+    { num: '03', title: 'You Review and We Adjust', desc: 'We share the plan with you. You can change anything — add things, remove things, shift the pace. There is no fixed version until you are happy with it.', icon: '👀' },
+    { num: '04', title: 'We Arrange the Trip', desc: 'Once the plan is settled, we coordinate with the local operators, guides, and boatmen we work with. You just need to show up.', icon: '🚀' },
   ]
 
   const sampleItinerary = [
@@ -79,7 +79,8 @@ export default function Itinerary() {
       {/* Sample Itinerary */}
       <section className="py-20 bg-[var(--bg-page)]">
         <div className="container mx-auto px-4">
-          <h2 className="font-display text-4xl font-bold text-center mb-12">A Sample 3-Day Journey</h2>
+          <h2 className="font-display text-4xl font-bold text-center mb-4">A Typical 3-Day Varanasi Trip</h2>
+          <p className="text-center text-[var(--text-secondary)] max-w-2xl mx-auto mb-8">This is an example of how we might structure 3 days. Actual timing and activities depend on your preferences and the season.</p>
           <motion.div
             className="glass-card p-8 md:p-12"
             initial={{ opacity: 0 }}
@@ -119,16 +120,14 @@ export default function Itinerary() {
       <section className="py-20 bg-gradient-to-b from-[var(--bg-elevated)] to-[var(--bg-page)]">
         <div className="container mx-auto px-4">
           <h2 className="font-display text-4xl font-bold text-center mb-12">Fully Customizable</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '⏱️', label: 'Duration', desc: '2-7 days or more' },
-              { icon: '💰', label: 'Budget', desc: 'Budget-friendly to luxury' },
-              { icon: '👥', label: 'Group Size', desc: '1 person to groups' },
-              { icon: '🎯', label: 'Interests', desc: 'Spiritual, cultural, adventure' },
-              { icon: '🏨', label: 'Stays', desc: 'Hostels to 5-star' },
-              { icon: '🍽️', label: 'Food', desc: 'Vegetarian, vegan, any preference' },
-              { icon: '📸', label: 'Pace', desc: 'Slow travel to fast-paced' },
-              { icon: '♿', label: 'Accessibility', desc: 'We accommodate all needs' },
+              { icon: '⏱️', label: 'Duration', desc: '2 days to 7 days or more' },
+              { icon: '👥', label: 'Group Size', desc: 'Solo traveller to group' },
+              { icon: '🎯', label: 'Interests', desc: 'Spiritual, cultural, food, photography, or a mix' },
+              { icon: '🌅', label: 'Pace', desc: 'Relaxed or packed, your choice' },
+              { icon: '🍽️', label: 'Food', desc: 'Vegetarian, vegan, or any preference accommodated' },
+              { icon: '♿', label: 'Accessibility', desc: 'We accommodate different mobility needs' },
             ].map((opt, i) => (
               <motion.div
                 key={i}
@@ -158,12 +157,12 @@ export default function Itinerary() {
             viewport={{ once: true }}
           >
             <h2 className="font-display text-4xl font-bold mb-4">Ready to Create Your Story?</h2>
-            <p className="text-[var(--text-secondary)] text-lg mb-8">Start with our 60-second form. Get a custom plan in 2 hours.</p>
+            <p className="text-[var(--text-secondary)] text-lg mb-8">Fill our short form. We will put together a trip outline and get in touch.</p>
             <Link
               href="/#lead-form"
               className="inline-block bg-gradient-to-r from-[#D97706] to-[#FBBF24] px-8 py-3 rounded-lg font-bold text-[#0D0B08] hover:scale-105 transition"
             >
-              Build Your Itinerary Now →
+              Start Planning →
             </Link>
           </motion.div>
         </div>
