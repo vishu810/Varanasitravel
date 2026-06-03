@@ -16,20 +16,20 @@ export async function sendLeadNotificationEmail(lead: any) {
   }
 
   try {
-    const travelDateStr = lead.travelDate ? new Date(lead.travelDate).toLocaleDateString() : 'Not specified'
+    const travelDateFromStr = lead.travelDateFrom ? new Date(lead.travelDateFrom).toLocaleDateString() : 'Not specified'
+    const travelDateToStr = lead.travelDateTo ? new Date(lead.travelDateTo).toLocaleDateString() : 'Not specified'
     
     const response = await resend!.emails.send({
       from: `Varunaassi <${resendFromEmail}>`,
       to: adminEmail,
-      subject: `🔔 New Lead: ${lead.fullName} — ${travelDateStr}`,
+      subject: `🔔 New Lead: ${lead.fullName} — ${travelDateFromStr} to ${travelDateToStr}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px;">
           <h2>New Trip Enquiry 🙏</h2>
           <p><strong>Name:</strong> ${lead.fullName}</p>
           <p><strong>WhatsApp:</strong> +91 ${lead.whatsapp}</p>
-          <p><strong>Travel Date:</strong> ${travelDateStr}</p>
+          <p><strong>Travel Dates:</strong> ${travelDateFromStr} to ${travelDateToStr}</p>
           <p><strong>Pax:</strong> ${lead.numberOfPax}</p>
-          <p><strong>Budget Range:</strong> ${lead.budgetRange || 'Not specified'}</p>
           <p><strong>Special Requests:</strong> ${lead.specialRequests || 'None'}</p>
           <a href="${process.env.NEXTAUTH_URL}/admin/leads/${lead.id}">View in Dashboard →</a>
         </div>
