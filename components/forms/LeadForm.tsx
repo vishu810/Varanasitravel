@@ -112,7 +112,7 @@ export default function LeadForm() {
         >
           <div className="grid gap-6 md:grid-cols-3">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-[#714e16]">From which date? *</label>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">From which date do you want to travel? *</label>
               <input
                 type="date"
                 {...register('travelDateFrom', { valueAsDate: true })}
@@ -121,7 +121,7 @@ export default function LeadForm() {
               {errors.travelDateFrom && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelDateFrom.message}</p>}
             </div>
             <div>
-              <label className="mb-2 block text-sm font-semibold text-[#714e16]">To which date? *</label>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">To which date do you want to travel? *</label>
               <input
                 type="date"
                 {...register('travelDateTo', { valueAsDate: true })}

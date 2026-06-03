@@ -11,7 +11,7 @@ if (resendApiKey) {
 
 export async function sendLeadNotificationEmail(lead: any) {
   if (!resend || !resendFromEmail || !adminEmail) {
-    console.warn(`⚠️ Email not sent. Missing: ${!resend ? 'RESEND_API_KEY' : ''} ${!resendFromEmail ? 'RESEND_FROM_EMAIL' : ''} ${!adminEmail ? 'ADMIN_EMAIL' : ''}`)
+    console.warn(`⚠️ Email not sent. Missing config: ${!resend ? 'RESEND_API_KEY ' : ''}${!resendFromEmail ? 'RESEND_FROM_EMAIL ' : ''}${!adminEmail ? 'ADMIN_EMAIL' : ''}`)
     return null
   }
 
@@ -19,6 +19,7 @@ export async function sendLeadNotificationEmail(lead: any) {
     const travelDateFromStr = lead.travelDateFrom ? new Date(lead.travelDateFrom).toLocaleDateString() : 'Not specified'
     const travelDateToStr = lead.travelDateTo ? new Date(lead.travelDateTo).toLocaleDateString() : 'Not specified'
     
+    console.log(`[Email] Sending notification to ${adminEmail}...`)
     const response = await resend!.emails.send({
       from: `Varunaassi <${resendFromEmail}>`,
       to: adminEmail,
@@ -37,14 +38,14 @@ export async function sendLeadNotificationEmail(lead: any) {
     })
     
     if (response.error) {
-      console.error('Resend API error:', response.error)
+      console.error('[Email Error]', response.error)
       return null
     }
     
-    console.log(`✅ Lead notification sent to ${adminEmail}`)
+    console.log(`[Email] ✅ Notification sent to ${adminEmail}`)
     return response
-  } catch (error) {
-    console.error('Failed to send lead notification email:', error)
+  } catch (error: any) {
+    console.error('[Email Error]', error.message || error)
     return null
   }
 }

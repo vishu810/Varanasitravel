@@ -6,7 +6,15 @@ import { sendLeadNotificationEmail, sendLeadConfirmationEmail } from '@/lib/emai
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const validated = leadSchema.parse(body)
+    
+    // Convert date strings to Date objects if needed
+    const processedBody = {
+      ...body,
+      travelDateFrom: body.travelDateFrom ? new Date(body.travelDateFrom) : undefined,
+      travelDateTo: body.travelDateTo ? new Date(body.travelDateTo) : undefined,
+    }
+    
+    const validated = leadSchema.parse(processedBody)
 
     const lead = await prisma.lead.create({
       data: {
@@ -27,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, leadId: lead.id }, { status: 201 })
   } catch (error: any) {
-    console.error(error)
+    console.error('[API Error]', error)
     return NextResponse.json({ error: error.message }, { status: 400 })
   }
 }
