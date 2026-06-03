@@ -110,7 +110,7 @@ export default function LeadForm() {
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             <div>
               <label className="mb-2 block text-sm font-semibold text-[#714e16]">When do you want to travel? *</label>
               <input
@@ -128,6 +128,20 @@ export default function LeadForm() {
                 min="1"
                 className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
               />
+              {errors.numberOfPax && <p className="mt-1 text-sm text-red-400">⚠️ {errors.numberOfPax.message}</p>}
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">Budget Range (optional)</label>
+              <select
+                {...register('budgetRange')}
+                className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
+              >
+                <option value="">Select range...</option>
+                <option value="USD 2,000 - 5,000">$2k - $5k</option>
+                <option value="USD 5,000 - 10,000">$5k - $10k</option>
+                <option value="USD 10,000 - 20,000">$10k - $20k</option>
+                <option value="USD 20,000+">$20k+</option>
+              </select>
             </div>
           </div>
         </motion.div>
