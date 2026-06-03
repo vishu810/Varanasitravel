@@ -145,24 +145,11 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Map Section (Placeholder) */}
+      {/* Find Us Section */}
       <section className="py-20 bg-gradient-to-b from-[var(--bg-elevated)] to-[var(--bg-page)]">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display text-4xl font-bold text-center mb-12">Find Us</h2>
-          <motion.div
-            className="glass-card p-1 rounded-2xl overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <img
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80"
-              alt="Varanasi Map"
-              className="w-full h-96 object-cover rounded-xl"
-            />
-          </motion.div>
-          <p className="text-center text-[var(--text-secondary)] mt-6 text-sm">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-display text-4xl font-bold mb-6">Find Us</h2>
+          <p className="text-center text-[var(--text-secondary)] text-sm">
             📍 Based in Varanasi, Uttar Pradesh, India
           </p>
         </div>

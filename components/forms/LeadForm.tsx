@@ -3,20 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { leadSchema, type LeadFormValues } from '@/lib/validations'
-import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-
-const interestsList = [
-  { emoji: '🛕', label: 'Ganga Aarti' },
-  { emoji: '🚣', label: 'Boat Ride on Ganga' },
-  { emoji: '🍜', label: 'Old City Food Walk' },
-  { emoji: '🧘', label: 'Yoga or Meditation' },
-  { emoji: '🏺', label: 'Silk Weaving Visit' },
-  { emoji: '📸', label: 'Photography Walk' },
-  { emoji: '🛕', label: 'Kashi Vishwanath Temple' },
-  { emoji: '🌿', label: 'Sarnath Day Trip' },
-  { emoji: '🎵', label: 'Classical Music Evening' },
-]
 
 export default function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -24,25 +11,12 @@ export default function LeadForm() {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
     reset,
   } = useForm<LeadFormValues>({
     resolver: zodResolver(leadSchema),
-    defaultValues: { interests: [], numberOfPax: 2 },
+    defaultValues: { numberOfPax: 2 },
   })
-
-  const selectedInterests = watch('interests')
-
-  const toggleInterest = (interest: string) => {
-    const current = selectedInterests || []
-    if (current.includes(interest)) {
-      setValue('interests', current.filter(i => i !== interest))
-    } else {
-      setValue('interests', [...current, interest])
-    }
-  }
 
   const onSubmit = async (data: LeadFormValues) => {
     setIsSubmitting(true)
@@ -73,7 +47,7 @@ export default function LeadForm() {
       viewport={{ once: true }}
     >
       {/* Header */}
-      <div className="text-center mb-6 md:mb-8">
+      <div className="text-center mb-6 md:mb-4">
         <motion.h2
           className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3"
           initial={{ opacity: 0 }}
@@ -87,7 +61,7 @@ export default function LeadForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Step 1: Basic Info */}
         <motion.div
           className="space-y-6"
@@ -139,17 +113,12 @@ export default function LeadForm() {
           <div className="grid gap-6 md:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-semibold text-[#714e16]">When do you want to travel? *</label>
-              <select
-                {...register('travelMonth')}
+              <input
+                type="date"
+                {...register('travelDate', { valueAsDate: true })}
                 className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
-              >
-                <option value="">Select Month</option>
-                <option>Jan-Mar 2025</option>
-                <option>Apr-Jun 2025</option>
-                <option>Jul-Sep 2025</option>
-                <option>Oct-Dec 2025</option>
-              </select>
-              {errors.travelMonth && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelMonth.message}</p>}
+              />
+              {errors.travelDate && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelDate.message}</p>}
             </div>
             <div>
               <label className="mb-2 block text-sm font-semibold text-[#714e16]">How many people are travelling? *</label>
@@ -163,37 +132,7 @@ export default function LeadForm() {
           </div>
         </motion.div>
 
-        {/* Step 3: Interests */}
-        <motion.div
-          className="space-y-4 pt-6 border-t border-[var(--border)]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <label className="block text-sm font-semibold text-[#714e16]">What are you most interested in?</label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {interestsList.map(({ emoji, label }) => (
-              <motion.button
-                key={label}
-                type="button"
-                onClick={() => toggleInterest(label)}
-                className={cn(
-                  'rounded-lg px-4 py-2.5 text-sm font-semibold transition-all border',
-                  selectedInterests?.includes(label)
-                    ? 'bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] border-[#FBBF24] shadow-lg'
-                    : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[#D97706] hover:bg-[rgba(217,119,6,0.1)]'
-                )}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>{emoji}</span> {label}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Step 4: Special Requests */}
+        {/* Step 3: Special Requests */}
         <motion.div
           className="space-y-4 pt-6 border-t border-[var(--border)]"
           initial={{ opacity: 0, y: 20 }}
@@ -215,7 +154,7 @@ export default function LeadForm() {
           className="space-y-4 pt-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
           <button

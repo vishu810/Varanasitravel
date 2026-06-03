@@ -17,10 +17,9 @@ model Lead {
   whatsapp        String
   email           String?
 
-  travelMonth     String
+  travelDate      DateTime?
   numberOfPax     Int
   budgetRange     String
-  interests       String?  // JSON string of interests
   specialRequests String?
 
   source          String?
