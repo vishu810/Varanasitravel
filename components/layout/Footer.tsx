@@ -73,8 +73,6 @@ export default function Footer() {
               {[
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
-                { label: 'Privacy Policy', href: '#' },
-                { label: 'Terms & Conditions', href: '#' },
               ].map((link) => (
                 <li key={`${link.href}-${link.label}`}>
                   <Link

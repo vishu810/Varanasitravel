@@ -149,9 +149,7 @@ export default function Experiences() {
                 <h3 className="font-display text-xl font-bold mb-2">{exp.title}</h3>
                 <p className="text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">{exp.description}</p>
 
-                <div className="space-y-2 mb-4 py-4 border-y border-[rgba(201,163,125,0.4)]">
-                  <p className="text-sm text-[#D97706]">⏱️ {exp.duration}</p>
-                </div>
+
 
                 <ul className="text-xs text-[var(--text-secondary)] space-y-1 mb-4">
                   {exp.highlights.map((h, j) => (

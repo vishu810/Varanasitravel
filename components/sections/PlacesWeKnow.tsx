@@ -6,50 +6,62 @@ export default function PlacesWeKnow() {
     {
       name: 'Dashashwamedh Ghat',
       description: 'The main ghat and home of the nightly Ganga Aarti ceremony.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20ghat-BdZxR7Sba1Zyz6V5ANpKKRool1iVBi.jpeg',
     },
     {
       name: 'Assi Ghat',
       description: 'Southernmost major ghat — calm, local, where morning rituals happen at sunrise.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/people%20gether%20at%20ghaat-QFAF5Jj5RYvJnYHRVdB94YwCGFQGR3.jpeg',
     },
     {
       name: 'Manikarnika Ghat',
       description: 'One of the oldest cremation ghats in the world. A deeply sacred and contemplative place.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/manikarnika%20ghat-h4xRtmKHF1oQSeul13pM9Iiiidgl5s.jpeg',
     },
     {
       name: 'Kashi Vishwanath Temple',
       description: 'One of the twelve Jyotirlinga temples — the most important Shiva temple in Varanasi.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20view%20of%20ganga%20and%20shore-sgB1yTcpivraMTWj2ejJzPR2hpJTix.jpeg',
     },
     {
       name: 'Sarnath',
       description: '7 km from Varanasi. Where the Buddha gave his first sermon after attaining enlightenment.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/boatride%20morning%20sunrise-8ffTrtO7fNt5vh4m5PFaGAfaGdglwr.jpeg',
     },
     {
       name: 'Banaras Hindu University (BHU)',
       description: 'One of Asia\'s largest universities — the New Vishwanath Temple on campus is worth visiting.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20street-EQJvTa2HRBCfuSieN2OdSw5KVXEpe2.jpeg',
     },
     {
       name: 'Old City Lanes (Vishwanath Gali)',
       description: 'The narrow lanes near Kashi Vishwanath — silk shops, temples, tea stalls, and real Banarasi life.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20street%20view-nR7cVhnkFfxgdnR2vFIgF3wS2kIRAO.jpeg',
     },
     {
       name: 'Sankat Mochan Mandir',
       description: 'Hanuman temple famous for classical music evenings — peaceful and un-touristy.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/arti-sMfc0kEwjxO8clkN7K00EhkC2Q9ilq.jpeg',
     },
     {
       name: 'Silk Weaving Areas (Madanpura / Lallapura)',
       description: 'Where Banarasi silk is actually made. Worth visiting to understand the craft before buying.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20handwork%20textile%20art-s3sYZRL79fLeonYD2muimto5x9YmNt.jpeg',
     },
     {
       name: 'Chunar Fort (Day Trip)',
       description: '45 km from Varanasi — a 16th century Mughal fort on a cliff above the Ganga. Undervisited.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/banaras%20view%20of%20ganga%20and%20shore-sgB1yTcpivraMTWj2ejJzPR2hpJTix.jpeg',
     },
     {
       name: 'Vindhyachal (Day Trip)',
       description: '70 km away — a major Shakti Peeth temple town on the Ganga. Significant for Hindu pilgrims.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/early%20morning%20boats%20birds%20in%20ganga-XNFDCbJgoD1A3KsLIQCQB4AaKvjtvY.jpeg',
     },
     {
       name: 'Ramnagar Fort',
       description: 'Across the Ganga from Varanasi — home of the former Maharaja of Benares. Small but worthwhile.',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/boat%20ride-YRh9rocU7h9hv24j9sAE6JHZbAYDy0.jpeg',
     },
   ]
 
@@ -89,7 +101,7 @@ export default function PlacesWeKnow() {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -98,11 +110,20 @@ export default function PlacesWeKnow() {
           {places.map((place, i) => (
             <motion.div
               key={i}
-              className="glass-card p-6 hover:bg-[rgba(248,230,209,0.45)] transition"
+              className="glass-card overflow-hidden hover:shadow-lg transition group"
               variants={itemVariants}
             >
-              <h3 className="font-display text-xl font-bold mb-2">{place.name}</h3>
-              <p className="text-[#C4BDB0] text-sm leading-relaxed">{place.description}</p>
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={place.image} 
+                  alt={place.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-display text-lg font-bold mb-2">{place.name}</h3>
+                <p className="text-[#C4BDB0] text-sm leading-relaxed">{place.description}</p>
+              </div>
             </motion.div>
           ))}
         </motion.div>
