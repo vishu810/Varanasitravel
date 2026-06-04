@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { leadSchema } from '@/lib/validations'
 import { sendLeadNotificationEmail, sendLeadConfirmationEmail } from '@/lib/email'
 
+// v2: Fixed Prisma client to use NEON_DATABASE_URL and NEON_DATABASE_URL_UNPOOLED
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
