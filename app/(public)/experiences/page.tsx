@@ -5,68 +5,68 @@ import Link from 'next/link'
 export default function Experiences() {
   const experiences = [
     {
-      emoji: '🕯️',
-      title: 'Ganga Aarti Ceremony',
-      description: 'Witness the evening prayer ritual at Dashashwamedh Ghat with 100+ oil lamps dancing to ancient mantras.',
-      duration: '1.5 hours',
-      price: '₹599',
-      highlights: ['Prime ghat seat', 'Expert guide', 'Evening tea included'],
+      emoji: '🛕',
+      title: 'Ganga Aarti at Dashashwamedh Ghat',
+      duration: '~1.5 hours · Evening',
+      description:
+        'The nightly Ganga Aarti at Dashashwamedh Ghat is the most attended ritual in Varanasi. Priests perform a fire ceremony with large brass lamps to the sound of bells and chanting. You can watch from the ghat steps, from a nearby boat, or from a raised viewing area — each gives a different perspective.',
+      highlights: ['Held every evening at sunset', 'Boat-side or ghat-side viewing options', 'Guide explains the significance and ritual steps'],
     },
     {
       emoji: '🚣',
-      title: 'Dawn Boat Ride',
-      description: 'Glide through misty waters at sunrise, experiencing the city awakening with pilgrims and devotees.',
-      duration: '2 hours',
-      price: '₹799',
-      highlights: ['Sunrise views', 'Photography spots', 'Breakfast included'],
+      title: 'Dawn Boat Ride on the Ganga',
+      duration: '~2 hours · Pre-dawn start',
+      description:
+        'Starting before sunrise, a wooden rowboat takes you slowly along the ghats while the city wakes up. You pass bathers, priests conducting morning rituals, and the great burning ghats — all from the calm of the river. This is considered by many visitors to be the definitive Varanasi experience.',
+      highlights: ['Starts around 5 to 5:30 AM', 'Covers the main stretch of ghats — roughly 5 km', 'Local boatman rows — no motor, no rush'],
     },
     {
       emoji: '🍜',
-      title: 'Street Food & Ghat Walk',
-      description: 'Taste authentic Varanasi street food while exploring hidden ghats and centuries-old temples.',
-      duration: '3 hours',
-      price: '₹899',
-      highlights: ['6+ food stops', 'Local guide', 'Temple visits'],
+      title: 'Old City Food & Ghat Walk',
+      duration: '~3 hours · Morning or Evening',
+      description:
+        'Varanasi has its own food identity — kachori sabzi for breakfast, tamatar chaat, lassi, and the famous Banarasi paan. This walk goes through the narrow lanes near Vishwanath Gali, stopping at stalls that have been there for generations. It also covers a few of the less-visited ghats that most tourists skip.',
+      highlights: ['Covers 5 to 6 food stops — all vegetarian', 'Passes through the old city lanes near the temple area', 'Small group walk with a local guide'],
     },
     {
       emoji: '🧘',
-      title: 'Yoga at the Ghat',
-      description: 'Practice yoga and meditation with a certified instructor overlooking the sacred Ganges.',
-      duration: '1.5 hours',
-      price: '₹699',
-      highlights: ['Beginner-friendly', 'Inclusive session', 'Tea & snacks'],
+      title: 'Yoga or Meditation at the Ghats',
+      duration: '~1.5 hours · Early Morning',
+      description:
+        'Varanasi has a long tradition of yoga and meditation — several ashrams and individual teachers operate near the ghats. We can arrange a session with a local practitioner on or near the ghats, away from tourist crowds. Suitable for beginners as well as people with existing practice.',
+      highlights: ['Early morning session near the river', 'Can be adapted for beginners or experienced practitioners', 'Teacher is a local resident, not a hired performer'],
     },
     {
       emoji: '🏺',
-      title: 'Silk Weaving Workshop',
-      description: 'Visit a family-run silk loom and learn the traditional art of Benaras weaving directly from masters.',
-      duration: '2 hours',
-      price: '₹1,299',
-      highlights: ['Hands-on weaving', 'Master workshop', 'Take home creation'],
+      title: 'Silk Weaving Visit — Madanpura or Peeli Kothi',
+      duration: '~2 hours · Morning',
+      description:
+        'Varanasi produces some of India\'s finest silk — woven by hand on pit looms in family homes and small workshops. These are real working spaces, not showrooms. We arrange visits to weavers in Madanpura or Peeli Kothi where you can watch the process and talk to the weavers directly. There is no pressure to buy anything.',
+      highlights: ['Visits to working pit loom workshops', 'Weavers explain the pattern-making and dyeing process', 'Opportunity to see authentic Banarasi fabric being made'],
     },
     {
       emoji: '📸',
-      title: 'Photography Tour',
-      description: 'Capture Varanasi\'s soul with a professional photographer guide. Learn composition, light, and storytelling.',
-      duration: '3 hours',
-      price: '₹1,499',
-      highlights: ['Pro guidance', 'Best locations', 'Photo editing tips'],
+      title: 'Ghat Photography Walk',
+      duration: '~3 hours · Dawn or Dusk',
+      description:
+        "Varanasi is one of the most photographed places in India — but most visitor photos look the same. This walk is specifically for people who want to photograph the city thoughtfully. A guide who knows the ghats takes you to less crowded spots, at the right time of day, for better light and more interesting compositions. Good for phone photographers and camera users alike.",
+      highlights: ['Dawn walk covers the main ghats in soft morning light', 'Dusk walk covers the Aarti buildup and lamp-lit ghat atmosphere', 'Guide focuses on access and timing, not camera technique'],
     },
     {
-      emoji: '🕌',
-      title: 'Temple & Ashram Trail',
-      description: 'Visit ancient temples, meet sadhus (spiritual seekers), and understand Varanasi\'s spiritual significance.',
-      duration: '4 hours',
-      price: '₹1,199',
-      highlights: ['5+ temples', 'Spiritual talks', 'Meditation session'],
+      emoji: '🛕',
+      title: 'Temple and Ashram Walk',
+      duration: '~3 to 4 hours · Morning',
+      description:
+        "Varanasi has thousands of temples — but most visitors only see Kashi Vishwanath. This walk covers a selection of smaller, older temples in the old city that are significant but rarely visited by tourists. Includes a stop at one of the ghats where resident sadhus gather in the mornings.",
+      highlights: ['Kashi Vishwanath Temple area (exterior and nearby lanes)', '3 to 4 smaller temples with historical context', 'Visit to a ghat frequented by local sadhus and ascetics'],
     },
     {
       emoji: '🎨',
-      title: 'Pottery & Clay Workshop',
-      description: 'Create traditional clay artifacts with local artisans who\'ve been perfecting the craft for generations.',
-      duration: '2.5 hours',
-      price: '₹1,099',
-      highlights: ['Clay artisan', 'Firing experience', 'Artwork to take'],
+      title: 'Pottery and Clay Craft Workshop',
+      duration: '~2 to 2.5 hours · Morning',
+      description:
+        'Clay pottery is one of Varanasi\'s traditional crafts — small matka cups used for chai are made here. We arrange a session with a local potter, usually in their home workshop. You get to try the wheel and understand the craft. This is a quiet, unhurried experience away from the main tourist areas.',
+      highlights: ['Session with a working local potter', 'You try the wheel yourself — no experience needed', 'Small simple clay piece to take home (no guarantee of a specific item)'],
     },
   ]
 
@@ -149,10 +149,7 @@ export default function Experiences() {
                 <h3 className="font-display text-xl font-bold mb-2">{exp.title}</h3>
                 <p className="text-sm text-[var(--text-secondary)] mb-4 line-clamp-2">{exp.description}</p>
 
-                <div className="space-y-2 mb-4 py-4 border-y border-[rgba(201,163,125,0.4)]">
-                  <p className="text-sm text-[#D97706]">⏱️ {exp.duration}</p>
-                  <p className="text-lg font-bold text-[#FBBF24]">{exp.price}</p>
-                </div>
+
 
                 <ul className="text-xs text-[var(--text-secondary)] space-y-1 mb-4">
                   {exp.highlights.map((h, j) => (
@@ -160,38 +157,36 @@ export default function Experiences() {
                   ))}
                 </ul>
 
-                <button className="w-full bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] font-bold py-2 rounded-lg hover:scale-[1.02] transition text-sm">
-                  Learn More
-                </button>
+                <Link
+                  href="/contact"
+                  className="w-full block bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] font-bold py-2 rounded-lg hover:scale-[1.02] transition text-sm text-center"
+                >
+                  Ask About This →
+                </Link>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Why These Experiences */}
+      {/* Notes */}
       <section className="py-20 bg-gradient-to-b from-[var(--bg-elevated)] to-[var(--bg-page)]">
         <div className="container mx-auto px-4">
-          <h2 className="font-display text-4xl font-bold text-center mb-12">Why Our Experiences Stand Out</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: '🤝', title: 'Local Masters', desc: 'Led by people who\'ve lived here for decades, not guides from guidebooks.' },
-              { icon: '🎯', title: 'Small Groups', desc: 'Max 6 travelers per experience. Intimate, authentic, personal.' },
-              { icon: '💰', title: 'Transparent Pricing', desc: 'No hidden charges. Every rupee goes to local guides and artisans.' },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                className="glass-card p-8 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="font-display text-2xl font-bold mb-2">{item.title}</h3>
-                <p className="text-[var(--text-secondary)]">{item.desc}</p>
-              </motion.div>
-            ))}
+          <div className="glass-card p-10 text-center">
+            <h2 className="font-display text-4xl font-bold mb-6">Why these experiences work</h2>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              {[
+                { icon: '🤝', label: 'Local relationships', desc: 'We work with guides, boatmen, and workshop hosts from Varanasi’s neighborhoods.' },
+                { icon: '🎯', label: 'Small groups', desc: 'Most experiences are designed for small groups to stay authentic and manageable.' },
+                { icon: '📝', label: 'Flexible planning', desc: 'Every detail is adjusted around your schedule and interests.' },
+              ].map((item, i) => (
+                <div key={i} className="rounded-3xl border border-[rgba(201,163,125,0.4)] p-6">
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <h3 className="font-display text-2xl font-bold mb-2">{item.label}</h3>
+                  <p className="text-[var(--text-secondary)]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

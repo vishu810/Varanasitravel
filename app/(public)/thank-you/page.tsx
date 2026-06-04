@@ -21,7 +21,7 @@ function ThankYouContent() {
       </motion.div>
       <h1 className="font-display text-4xl font-bold md:text-5xl">Namaste, {name}! 🙏</h1>
       <p className="mt-4 max-w-md text-text-secondary">
-        A Varanasi travel expert will call you on WhatsApp within <span className="text-gold-500">2 hours</span> with a personalised plan.
+        A Varanasi travel expert will call you on WhatsApp. We will get back to you with a personalised plan.
       </p>
       <Link href="/experiences" className="mt-8 inline-block rounded-lg border border-[var(--border)] px-6 py-2 text-[var(--text-secondary)] transition hover:bg-[rgba(248,230,209,0.45)]">
         Explore Experiences While You Wait →

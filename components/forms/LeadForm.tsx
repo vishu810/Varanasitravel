@@ -3,60 +3,42 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { leadSchema, type LeadFormValues } from '@/lib/validations'
-import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-
-const interestsList = [
-  { emoji: '🛕', label: 'Ganga Aarti' },
-  { emoji: '🚣', label: 'Boat Ride' },
-  { emoji: '🍜', label: 'Food Walk' },
-  { emoji: '🧘', label: 'Yoga & Meditation' },
-  { emoji: '🏺', label: 'Silk & Crafts' },
-  { emoji: '📸', label: 'Photography' },
-]
 
 export default function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formStep, setFormStep] = useState(1)
+  const [apiError, setApiError] = useState('')
   
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors },
     reset,
   } = useForm<LeadFormValues>({
     resolver: zodResolver(leadSchema),
-    defaultValues: { interests: [], numberOfPax: 2 },
+    defaultValues: { numberOfPax: 2 },
   })
-
-  const selectedInterests = watch('interests')
-
-  const toggleInterest = (interest: string) => {
-    const current = selectedInterests || []
-    if (current.includes(interest)) {
-      setValue('interests', current.filter(i => i !== interest))
-    } else {
-      setValue('interests', [...current, interest])
-    }
-  }
 
   const onSubmit = async (data: LeadFormValues) => {
     setIsSubmitting(true)
+    setApiError('')
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, pageUrl: window.location.href }),
       })
+      
+      const responseData = await res.json()
+      
       if (res.ok) {
         window.location.href = `/thank-you?name=${encodeURIComponent(data.fullName)}`
       } else {
-        alert('Something went wrong. Please try again.')
+        setApiError(responseData.error || 'Failed to submit form. Please try again.')
       }
-    } catch {
-      alert('Network error. Please try again.')
+    } catch (error) {
+      console.error('[LeadForm] Submission error:', error)
+      setApiError('Network error. Please check your connection and try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -64,16 +46,16 @@ export default function LeadForm() {
 
   return (
     <motion.div
-      className="mx-auto max-w-4xl rounded-2xl glass-card p-6 md:p-12 overflow-hidden"
+      className="mx-auto max-w-4xl rounded-2xl glass-card p-4 md:p-8 lg:p-12 overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
       {/* Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-6 md:mb-4">
         <motion.h2
-          className="font-display text-4xl md:text-5xl font-bold mb-3"
+          className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -81,11 +63,11 @@ export default function LeadForm() {
         >
           <span className="gold-shimmer">Plan My Varanasi Trip</span>
         </motion.h2>
-        <p className="text-lg text-[#C4BDB0]">60 seconds • Expert call in 2 hours • Free forever</p>
+        <p className="text-xs sm:text-sm md:text-base text-[#C4BDB0]">Fill this in and we will call you on WhatsApp. No cost, no obligation.</p>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Step 1: Basic Info */}
         <motion.div
           className="space-y-6"
@@ -134,78 +116,39 @@ export default function LeadForm() {
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-[#714e16]">When do you want to travel? *</label>
-              <select
-                {...register('travelMonth')}
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">From which date do you want to travel? *</label>
+              <input
+                type="date"
+                {...register('travelDateFrom', { valueAsDate: true })}
                 className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
-              >
-                <option value="">Select Month</option>
-                <option>Jan-Mar 2025</option>
-                <option>Apr-Jun 2025</option>
-                <option>Jul-Sep 2025</option>
-                <option>Oct-Dec 2025</option>
-              </select>
-              {errors.travelMonth && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelMonth.message}</p>}
+              />
+              {errors.travelDateFrom && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelDateFrom.message}</p>}
             </div>
             <div>
-              <label className="mb-2 block text-sm font-semibold text-[#714e16]">How many travelers? *</label>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">To which date do you want to travel? *</label>
+              <input
+                type="date"
+                {...register('travelDateTo', { valueAsDate: true })}
+                className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
+              />
+              {errors.travelDateTo && <p className="mt-1 text-sm text-red-400">⚠️ {errors.travelDateTo.message}</p>}
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-[#714e16]">How many people are travelling? *</label>
               <input
                 type="number"
                 {...register('numberOfPax', { valueAsNumber: true })}
                 min="1"
                 className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
               />
+              {errors.numberOfPax && <p className="mt-1 text-sm text-red-400">⚠️ {errors.numberOfPax.message}</p>}
             </div>
           </div>
-
-          <div>
-            <label className="mb-2 block text-sm font-semibold text-[#714e16]">What's your budget per person? *</label>
-            <select
-              {...register('budgetRange')}
-              className="h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-4 text-[var(--text-primary)] focus:border-[#D97706] focus:outline-none transition"
-            >
-              <option value="">Select Budget</option>
-              <option>₹5,000 - ₹10,000</option>
-              <option>₹10,000 - ₹20,000</option>
-              <option>₹20,000 - ₹35,000</option>
-              <option>₹35,000+</option>
-            </select>
-          </div>
         </motion.div>
 
-        {/* Step 3: Interests */}
-        <motion.div
-          className="space-y-4 pt-6 border-t border-[var(--border)]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <label className="block text-sm font-semibold text-[#714e16]">What interests you most?</label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {interestsList.map(({ emoji, label }) => (
-              <motion.button
-                key={label}
-                type="button"
-                onClick={() => toggleInterest(label)}
-                className={cn(
-                  'rounded-lg px-4 py-2.5 text-sm font-semibold transition-all border',
-                  selectedInterests?.includes(label)
-                    ? 'bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] border-[#FBBF24] shadow-lg'
-                    : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-secondary)] hover:border-[#D97706] hover:bg-[rgba(217,119,6,0.1)]'
-                )}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>{emoji}</span> {label}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Step 4: Special Requests */}
+        {/* Step 3: Special Requests */}
         <motion.div
           className="space-y-4 pt-6 border-t border-[var(--border)]"
           initial={{ opacity: 0, y: 20 }}
@@ -213,7 +156,7 @@ export default function LeadForm() {
           transition={{ delay: 0.4, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <label className="mb-2 block text-sm font-semibold text-[#714e16]">Any special requests? (optional)</label>
+          <label className="mb-2 block text-sm font-semibold text-[#714e16]">Anything specific you want to do or avoid? (optional)</label>
           <textarea
             {...register('specialRequests')}
             rows={3}
@@ -227,9 +170,15 @@ export default function LeadForm() {
           className="space-y-4 pt-6"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
+          {apiError && (
+            <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 text-sm">
+              <p className="font-semibold">Error:</p>
+              <p>{apiError}</p>
+            </div>
+          )}
           <button
             type="submit"
             disabled={isSubmitting}
@@ -240,13 +189,13 @@ export default function LeadForm() {
                 <span className="animate-spin">⏳</span> Submitting...
               </span>
             ) : (
-              'Get My Free Varanasi Plan →'
+              'Request a Free Call Back →'
             )}
           </button>
 
           <div className="flex items-center justify-center gap-2 text-xs text-[#8C7F6E]">
             <span>🔒</span>
-            <span>Your privacy is sacred. No spam, ever. One expert call guaranteed.</span>
+            <span>We do not spam. We do not share your details. One personal WhatsApp call — that is it.</span>
           </div>
         </motion.div>
       </form>

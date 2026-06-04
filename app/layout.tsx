@@ -23,8 +23,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kashi Journeys — Plan Your Sacred Varanasi Trip',
-    template: '%s | Kashi Journeys',
+    default: 'Varunaassi — Plan Your Varanasi Trip',
+    template: '%s | Varunaassi',
   },
   description: 'Experience the real Varanasi. Personalised itineraries for spiritual journeys, ghat walks, Ganga Aarti & hidden experiences. Free trip planning.',
 }

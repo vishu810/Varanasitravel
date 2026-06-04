@@ -28,49 +28,46 @@ export default function UrgencyCTA() {
         >
           {/* Tagline */}
           <motion.div
-            className="inline-block px-4 py-1.5 rounded-full border border-[#D97706]/30 bg-[#D97706]/5 mb-6"
+            className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-[#D97706]/30 bg-[#D97706]/5 mb-4 md:mb-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm font-semibold text-[#FBBF24]">⏳ Limited Slots This Month</p>
+            <p className="text-xs md:text-sm font-semibold text-[#FBBF24]">GET IN TOUCH</p>
           </motion.div>
 
           {/* Main Heading */}
-          <h2 className="font-display text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            <span className="gold-shimmer">Varanasi Is Calling</span>
-            <br />
-            <span className="text-white">Will You Answer?</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+            <span className="gold-shimmer">Planning a Trip to Varanasi?</span>
           </h2>
 
           {/* Subheading */}
           <motion.p
-            className="text-lg md:text-xl text-[#C4BDB0] mb-8 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-[#C4BDB0] mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-2"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            We take only 15 trip requests per week to ensure every traveler gets our best attention, personalization, and care. Slots fill up 3-4 weeks in advance.
+            Tell us what you have in mind. We will put together a trip outline and call you on WhatsApp to go over it. No booking required. No payment upfront.
           </motion.p>
 
           {/* Feature List */}
           <motion.div
-            className="grid md:grid-cols-3 gap-6 mb-10"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             viewport={{ once: true }}
           >
             {[
-              { icon: '🎯', label: 'Personalized Itinerary' },
-              { icon: '📞', label: 'Expert Callback in 2 Hours' },
-              { icon: '🛕', label: 'Local Guides & Experiences' },
+              { label: 'We Know Varanasi Well' },
+              { label: 'Personal WhatsApp Call' },
+              { label: 'No Booking Pressure' },
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-center gap-3 text-[#C4BDB0]">
-                <span className="text-3xl">{item.icon}</span>
-                <span className="font-semibold">{item.label}</span>
+              <div key={i} className="flex items-center justify-center text-[#C4BDB0]">
+                <span className="font-semibold text-xs sm:text-sm md:text-base">{item.label}</span>
               </div>
             ))}
           </motion.div>
@@ -78,25 +75,25 @@ export default function UrgencyCTA() {
           {/* CTA Button */}
           <motion.button
             onClick={scrollToForm}
-            className="bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] px-10 py-4 rounded-lg font-bold text-lg hover:scale-105 transition inline-block shadow-xl"
+            className="bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] px-6 sm:px-8 md:px-10 py-3 md:py-4 rounded-lg font-bold text-sm md:text-lg hover:scale-105 transition inline-block shadow-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
             viewport={{ once: true }}
             whileHover={{ boxShadow: '0 0 40px rgba(217,119,6,0.6)' }}
           >
-            Claim My Free Trip Plan →
+            Start Planning →
           </motion.button>
 
           {/* Trust Badge */}
           <motion.p
-            className="text-sm text-[#8C7F6E] mt-6"
+            className="text-xs md:text-sm text-[#8C7F6E] mt-4 md:mt-6 px-2"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            🔒 No credit card needed • 100% Free • No spam
+            No payment. No agency fee. Just a conversation.
           </motion.p>
         </motion.div>
       </div>

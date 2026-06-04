@@ -1,30 +1,33 @@
+-- CreateEnum
+CREATE TYPE "LeadStatus" AS ENUM ('NEW', 'CONTACTED', 'QUALIFIED', 'QUOTED', 'CONVERTED', 'LOST');
+
 -- CreateTable
 CREATE TABLE "Lead" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "fullName" TEXT NOT NULL,
     "whatsapp" TEXT NOT NULL,
     "email" TEXT,
-    "travelMonth" TEXT NOT NULL,
+    "travelDate" TIMESTAMP(3),
     "numberOfPax" INTEGER NOT NULL,
     "budgetRange" TEXT NOT NULL,
-    "interests" TEXT,
     "specialRequests" TEXT,
     "source" TEXT,
     "pageUrl" TEXT,
-    "status" TEXT NOT NULL DEFAULT 'NEW',
+    "status" "LeadStatus" NOT NULL DEFAULT 'NEW',
     "notes" TEXT,
-    "quotedPrice" REAL,
-    "finalPrice" REAL,
-    "margin" REAL,
+    "quotedPrice" DOUBLE PRECISION,
+    "finalPrice" DOUBLE PRECISION,
+    "margin" DOUBLE PRECISION,
     "itineraryId" TEXT,
-    CONSTRAINT "Lead_itineraryId_fkey" FOREIGN KEY ("itineraryId") REFERENCES "Itinerary" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+
+    CONSTRAINT "Lead_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Package" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "subtitle" TEXT NOT NULL,
@@ -32,71 +35,81 @@ CREATE TABLE "Package" (
     "highlights" TEXT,
     "durationDays" INTEGER NOT NULL,
     "durationNights" INTEGER NOT NULL,
-    "basePrice" REAL NOT NULL,
-    "originalPrice" REAL,
+    "basePrice" DOUBLE PRECISION NOT NULL,
+    "originalPrice" DOUBLE PRECISION,
     "category" TEXT NOT NULL,
     "badge" TEXT,
     "coverImage" TEXT NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isFeatured" BOOLEAN NOT NULL DEFAULT false,
-    "sortOrder" INTEGER NOT NULL DEFAULT 0
+    "sortOrder" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "Package_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Experience" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "shortDesc" TEXT NOT NULL,
     "duration" TEXT NOT NULL,
     "timeOfDay" TEXT NOT NULL,
-    "price" REAL NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
     "category" TEXT NOT NULL,
     "coverImage" TEXT NOT NULL,
     "highlights" TEXT,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "isFeatured" BOOLEAN NOT NULL DEFAULT false,
-    "sortOrder" INTEGER NOT NULL DEFAULT 0
+    "sortOrder" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "Experience_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Itinerary" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "title" TEXT NOT NULL,
     "days" INTEGER NOT NULL,
-    "totalEstimate" REAL NOT NULL,
+    "totalEstimate" DOUBLE PRECISION NOT NULL,
     "shareToken" TEXT NOT NULL,
-    "days_data" JSONB NOT NULL
+    "days_data" JSONB NOT NULL,
+
+    CONSTRAINT "Itinerary_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Testimonial" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "tripType" TEXT NOT NULL,
     "quote" TEXT NOT NULL,
     "rating" INTEGER NOT NULL DEFAULT 5,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
-    "sortOrder" INTEGER NOT NULL DEFAULT 0
+    "sortOrder" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "Testimonial_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT,
     "password" TEXT NOT NULL,
     "role" TEXT NOT NULL DEFAULT 'ADMIN',
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Account" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
@@ -108,16 +121,18 @@ CREATE TABLE "Account" (
     "scope" TEXT,
     "id_token" TEXT,
     "session_state" TEXT,
-    CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+
+    CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Session" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "sessionToken" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "expires" DATETIME NOT NULL,
-    CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "expires" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Session_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -146,3 +161,12 @@ CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provi
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+
+-- AddForeignKey
+ALTER TABLE "Lead" ADD CONSTRAINT "Lead_itineraryId_fkey" FOREIGN KEY ("itineraryId") REFERENCES "Itinerary"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -34,9 +34,9 @@ export default function Footer() {
         >
           {/* Brand */}
           <motion.div variants={itemVariants}>
-            <h3 className="font-display text-2xl font-bold text-[#D97706] mb-4">Kashi Journeys</h3>
+            <h3 className="font-display text-2xl font-bold text-[#D97706] mb-4">Varunaassi</h3>
             <p className="text-sm text-[var(--text-secondary)] mb-4 leading-relaxed">
-              Your trusted Varanasi travel expert. Crafting personalized journeys to the sacred city since 2015.
+              A Varanasi travel planning service. We help you plan a real, personalised trip to one of India's most extraordinary cities.
             </p>
             <div className="flex gap-3">
               <a href="#" className="text-2xl hover:text-[#D97706] transition">📱</a>
@@ -73,8 +73,6 @@ export default function Footer() {
               {[
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
-                { label: 'Privacy Policy', href: '#' },
-                { label: 'Terms & Conditions', href: '#' },
               ].map((link) => (
                 <li key={`${link.href}-${link.label}`}>
                   <Link
@@ -102,8 +100,8 @@ export default function Footer() {
               <li className="flex items-start gap-2">
                 <span className="text-xl">✉️</span>
                 <div>
-                  <p className="text-[var(--text-secondary)]">Email</p>
-                  <p className="text-[#FBBF24] font-semibold">vishu810singh@gmail.com</p>
+                  <p className="text-[#C4BDB0]">Email</p>
+                  <p className="text-[#FBBF24] font-semibold">info@varunaassi.com</p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
@@ -129,21 +127,13 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <p className="text-sm text-[#C4BDB0] text-center md:text-left">
-            © {currentYear} Kashi Journeys. All rights reserved. 🙏
+            © {currentYear} Varunaassi. All rights reserved.
           </p>
-          <p className="text-sm text-[#8C7F6E] text-center">
-            Made with ❤️ in Varanasi, India
-          </p>
-          <div className="flex gap-2">
-            <span className="text-lg">🕯️</span>
-            <span className="text-lg">🙏</span>
-            <span className="text-lg">🌅</span>
-          </div>
         </motion.div>
 
         {/* Trust Statement */}
         <motion.div
-          className="mt-8 p-4 rounded-lg bg-[var(--bg-surface)] border border-[var(--border)] text-center text-xs text-[var(--text-secondary)]"
+          className="mt-8 p-4 rounded-lg bg-white/5 border border-white/10 text-center text-xs text-[#C4BDB0]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}

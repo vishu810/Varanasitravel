@@ -5,7 +5,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("NEON_DATABASE_URL")
+  directUrl = env("NEON_DATABASE_URL_UNPOOLED")
 }
 
 model Lead {
@@ -17,10 +18,9 @@ model Lead {
   whatsapp        String
   email           String?
 
-  travelMonth     String
+  travelDateFrom  DateTime?
+  travelDateTo    DateTime?
   numberOfPax     Int
-  budgetRange     String
-  interests       String?  // JSON string of interests
   specialRequests String?
 
   source          String?

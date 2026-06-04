@@ -6,30 +6,24 @@ export default function ExperienceGrid() {
   const experiences = [
     {
       emoji: '🛕',
-      title: 'Ganga Aarti Ceremony',
-      subtitle: 'The Evening Ritual',
-      image: 'https://images.unsplash.com/photo-1596040606112-bc8ab325146f?w=400&q=80',
-      price: '₹599',
-      rating: 4.9,
-      reviews: 230,
+      title: 'Ganga Aarti at Dashashwamedh Ghat',
+      tag: 'Evening Ritual',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/arti-sMfc0kEwjxO8clkN7K00EhkC2Q9ilq.jpeg',
+      description: 'The evening Aarti at Dashashwamedh Ghat is the most iconic ritual in Varanasi. Priests perform a coordinated fire ceremony on the banks of the Ganga every evening. We arrange front-row viewing, boat-side viewing, or ghat seating depending on your preference.',
     },
     {
       emoji: '🚣',
-      title: 'Dawn Boat Ride',
-      subtitle: 'Sacred Waters',
-      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80',
-      price: '₹799',
-      rating: 4.8,
-      reviews: 195,
+      title: 'Dawn Boat Ride on the Ganga',
+      tag: 'Early Morning · Ghats',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/boatride%20morning%20sunrise-8ffTrtO7fNt5vh4m5PFaGAfaGdglwr.jpeg',
+      description: 'A slow boat ride along the ghats at dawn is the single best way to see Varanasi. You watch the city wake up — bathers, priests, morning rituals — all from the calm of the river. We arrange wooden rowboats with local boatmen.',
     },
     {
       emoji: '🍜',
-      title: 'Food Heritage Walk',
-      subtitle: 'Street to Soul',
-      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80',
-      price: '₹899',
-      rating: 4.9,
-      reviews: 312,
+      title: 'Old City Food Walk',
+      tag: 'Street Food · Culture',
+      image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sweets-yPUJfFgNyhuNfk4WhNDIMTAaU3Lw9t.jpeg',
+      description: 'Varanasi has one of India\'s most distinct food cultures — from kachori sabzi at dawn to the famous Banarasi paan. We arrange guided walks through the old city lanes with someone who knows which stalls are worth stopping at and why.',
     },
   ]
 
@@ -53,22 +47,23 @@ export default function ExperienceGrid() {
     <section className="py-20 relative">
       <div className="container mx-auto px-4">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16 px-2"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            <span className="gold-shimmer">Experiences That Stay</span>
+          <p className="text-xs sm:text-sm uppercase tracking-widest text-[#D97706] font-bold mb-3 md:mb-4">WHAT WE ARRANGE</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
+            <span className="gold-shimmer">Real Varanasi Experiences</span>
           </h2>
-          <p className="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto">
-            Curated moments designed to touch your soul, led by locals who know every secret.
+          <p className="text-[var(--text-secondary)] text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+            These are activities we personally know and arrange for travellers. Each one is led by someone who has done this hundreds of times.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-3 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -96,33 +91,23 @@ export default function ExperienceGrid() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="mb-3">
-                    <h3 className="font-display text-2xl font-bold mb-1">{exp.title}</h3>
-                    <p className="text-[#D97706] font-semibold text-sm">{exp.subtitle}</p>
+                  <div className="mb-2 md:mb-3">
+                    <h3 className="font-display text-lg md:text-2xl font-bold mb-1">{exp.title}</h3>
+                    <p className="text-[#D97706] font-semibold text-xs md:text-sm">{exp.tag}</p>
                   </div>
 
-                  {/* Rating */}
-<div className="flex items-center gap-2 mb-4 pb-4 border-b border-[rgba(201,163,125,0.4)]">
-                      <div className="flex items-center gap-1">
-                        <span className="text-lg">⭐</span>
-                        <span className="font-bold">{exp.rating}</span>
-                      </div>
-                      <span className="text-xs text-[var(--text-secondary)]">({exp.reviews} reviews)</span>
-                  </div>
+                  {/* Description */}
+                  <p className="text-[#C4BDB0] mb-4 md:mb-6 text-xs sm:text-sm md:text-sm leading-relaxed">
+                    {exp.description}
+                  </p>
 
-                  {/* Price & Action */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-[var(--text-secondary)] mb-1">Starting from</p>
-                      <p className="font-display text-2xl font-bold text-[#FBBF24]">{exp.price}</p>
-                    </div>
-                    <Link
-                      href="/experiences"
-                      className="bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] w-12 h-12 rounded-full flex items-center justify-center font-bold hover:scale-110 transition"
-                    >
-                      →
-                    </Link>
-                  </div>
+                  {/* Action */}
+                  <Link
+                    href="#lead-form"
+                    className="inline-block bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] px-4 py-2 rounded-lg font-bold hover:scale-105 transition text-sm"
+                  >
+                    Ask About This →
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -137,12 +122,12 @@ export default function ExperienceGrid() {
           transition={{ delay: 0.5, duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <Link
-            href="/experiences"
+          <a
+            href="#lead-form"
             className="inline-block bg-gradient-to-r from-[#D97706] to-[#FBBF24] text-[#0D0B08] px-8 py-3 rounded-lg font-bold hover:scale-105 transition"
           >
-            Explore All Experiences →
-          </Link>
+            Plan My Trip →
+          </a>
         </motion.div>
       </div>
     </section>

@@ -12,7 +12,7 @@ import('dotenv').then(dotenv => {
           email: 'test@example.com',
           travelMonth: 'June 2026',
           numberOfPax: 2,
-          budgetRange: '₹50,000 - ₹1,00,000',
+          budgetRange: '50,000 - 1,00,000',
           interests: ['Culture', 'Food'],
           specialRequests: 'Test request',
           source: 'website',

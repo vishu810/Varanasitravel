@@ -8,42 +8,36 @@ export default function Testimonials() {
       author: 'Vishu',
       role: 'Traveler, Bangalore',
       avatar: '👩',
-      rating: 5,
     },
     {
       text: "As a solo female traveler, I was nervous. But from the moment I landed, the team made me feel safe and welcomed. The experiences were authentic, not touristy.",
       author: 'Anonymous',
       role: 'Solo Traveler',
       avatar: '👩',
-      rating: 5,
     },
     {
-      text: "We booked a customized 5-day package for our family. They accommodated our elderly parents perfectly. The silk workshop, food tour, and boat rides were unforgettable.",
+      text: "We booked a customized 5-day trip for our family. They accommodated our elderly parents perfectly. The silk workshop, food tour, and boat rides were unforgettable.",
       author: 'Naveen',
       role: 'Family Traveler',
       avatar: '👨',
-      rating: 5,
     },
     {
-      text: "I came for spirituality and stayed for the people. The early morning yoga sessions, ghat walks with monks, and conversations with locals changed my perspective on life.",
+      text: "I came for spirituality and stayed for the people. The early morning yoga sessions, ghat walks with monks, and conversations with locals changed my perspective.",
       author: 'Vishu',
       role: 'Yoga Practitioner',
       avatar: '👩',
-      rating: 5,
     },
     {
-      text: "Best ₹15,000 I ever spent. The Benaras Soul package gave me experiences money can't usually buy. Their guides are more like friends now.",
+      text: "Best decision I ever made. The Benaras Soul trip gave me experiences I won't forget.",
       author: 'Anonymous',
       role: 'Student',
       avatar: '👨',
-      rating: 5,
     },
     {
-      text: "Skeptical at first, but their personalized itinerary was exactly what I needed. The photography session, temple visits, and conversations with locals—all perfect.",
+      text: "Skeptical at first, but their personalized itinerary was exactly what I needed. The photography walk, temple visits, and conversations with locals—all perfect.",
       author: 'Naveen',
       role: 'Photographer',
       avatar: '👩',
-      rating: 5,
     },
   ]
 
@@ -94,13 +88,7 @@ export default function Testimonials() {
               className="glass-card p-8 hover:bg-[rgba(248,230,209,0.45)] transition flex flex-col h-full group"
               variants={itemVariants}
             >
-              {/* Stars */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, j) => (
-                  <span key={j} className="text-lg">⭐</span>
-                ))}
-              </div>
-
+              {/* stars removed */}
               {/* Quote */}
               <p className="text-[#C4BDB0] italic mb-6 flex-grow leading-relaxed">
                 "{testimonial.text}"
@@ -121,29 +109,7 @@ export default function Testimonials() {
           ))}
         </motion.div>
 
-        {/* Stats Summary */}
-        <motion.div
-          className="mt-16 glass-card p-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="font-display text-4xl font-bold text-[#D97706] mb-2">98%</div>
-              <p className="text-[#C4BDB0]">Recommend Us to Friends</p>
-            </div>
-            <div>
-              <div className="font-display text-4xl font-bold text-[#D97706] mb-2">4.9★</div>
-              <p className="text-[#C4BDB0]">Average Rating</p>
-            </div>
-            <div>
-              <div className="font-display text-4xl font-bold text-[#D97706] mb-2">500+</div>
-              <p className="text-[#C4BDB0]">Happy Travelers</p>
-            </div>
-          </div>
-        </motion.div>
+        {/* Stats summary removed */}
       </div>
     </section>
   )
