@@ -28,4 +28,26 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
 })
 
-export { handler as GET, handler as POST }
+// Validate environment at request time
+async function validateAndExecute(req: any, res: any, method: 'GET' | 'POST') {
+  const secret = process.env.NEXTAUTH_SECRET
+  const url = process.env.NEXTAUTH_URL
+  
+  if (!secret) {
+    console.warn('⚠️ NEXTAUTH_SECRET is not set. Auth may not work properly. Generate with: openssl rand -base64 32')
+  }
+  
+  if (!url && process.env.NODE_ENV === 'production') {
+    console.warn('⚠️ NEXTAUTH_URL is not set for production')
+  }
+  
+  return handler(req, res)
+}
+
+export async function GET(req: any) {
+  return validateAndExecute(req, {}, 'GET')
+}
+
+export async function POST(req: any) {
+  return validateAndExecute(req, {}, 'POST')
+}
