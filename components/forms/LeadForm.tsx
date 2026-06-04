@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 
 export default function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [apiError, setApiError] = useState('')
   
   const {
     register,
@@ -20,19 +21,24 @@ export default function LeadForm() {
 
   const onSubmit = async (data: LeadFormValues) => {
     setIsSubmitting(true)
+    setApiError('')
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, pageUrl: window.location.href }),
       })
+      
+      const responseData = await res.json()
+      
       if (res.ok) {
         window.location.href = `/thank-you?name=${encodeURIComponent(data.fullName)}`
       } else {
-        alert('Something went wrong. Please try again.')
+        setApiError(responseData.error || 'Failed to submit form. Please try again.')
       }
-    } catch {
-      alert('Network error. Please try again.')
+    } catch (error) {
+      console.error('[LeadForm] Submission error:', error)
+      setApiError('Network error. Please check your connection and try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -167,6 +173,12 @@ export default function LeadForm() {
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
+          {apiError && (
+            <div className="rounded-lg bg-red-50 border border-red-200 p-4 text-red-800 text-sm">
+              <p className="font-semibold">Error:</p>
+              <p>{apiError}</p>
+            </div>
+          )}
           <button
             type="submit"
             disabled={isSubmitting}
