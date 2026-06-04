@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${jakarta.variable} ${inter.variable}`}>
-      <body className="bg-[var(--bg-page)] text-[var(--text-primary)] antialiased">
+      <body className="bg-[var(--bg-page)] text-[var(--text-primary)] antialiased" suppressHydrationWarning>
         <Header />
         <main>{children}</main>
         <Footer />
