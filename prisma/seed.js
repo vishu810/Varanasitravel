@@ -6,12 +6,12 @@ const prisma = new PrismaClient()
 async function main() {
   // Admin user
   await prisma.user.upsert({
-    where: { email: 'travel@varunaassi.com' },
+    where: { email: 'admin@example.com' },
     update: {},
     create: {
-      email: 'travel@varunaassi.com',
+      email: 'admin@example.com',
       name: 'Admin',
-      password: await bcrypt.hash('FirstB@123', 10),
+      password: await bcrypt.hash('admin123', 10),
       role: 'SUPER_ADMIN',
     },
   })
