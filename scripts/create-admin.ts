@@ -12,14 +12,14 @@ async function createAdmin() {
     
     // Delete existing user if any
     await prisma.user.deleteMany({
-      where: { email: 'admin@example.com' }
+      where: { email: 'travel@varunaassi.com' }
     })
     console.log('[v0] Deleted existing admin user if any')
     
     // Create new user
     const user = await prisma.user.create({
       data: {
-        email: 'admin@example.com',
+        email: 'travel@varunaassi.com',
         name: 'Admin',
         password: hashedPassword,
         role: 'SUPER_ADMIN',
