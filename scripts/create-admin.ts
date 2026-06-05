@@ -7,19 +7,19 @@ async function createAdmin() {
   try {
     console.log('[v0] Starting admin user creation...')
     
-    const hashedPassword = await bcrypt.hash('admin123', 10)
+    const hashedPassword = await bcrypt.hash('FirstB@123', 10)
     console.log('[v0] Password hashed')
     
     // Delete existing user if any
     await prisma.user.deleteMany({
-      where: { email: 'admin@example.com' }
+      where: { email: 'travel@varunaassi.com' }
     })
     console.log('[v0] Deleted existing admin user if any')
     
     // Create new user
     const user = await prisma.user.create({
       data: {
-        email: 'admin@example.com',
+        email: 'travel@varunaassi.com',
         name: 'Admin',
         password: hashedPassword,
         role: 'SUPER_ADMIN',
