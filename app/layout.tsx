@@ -5,6 +5,8 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/shared/WhatsAppButton'
 import MobileStickyBar from '@/components/layout/MobileStickyBar'
+import CookieConsentBanner from '@/components/shared/CookieConsentBanner'
+import StickyWhatsAppButton from '@/components/shared/StickyWhatsAppButton'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -36,12 +38,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${jakarta.variable} ${inter.variable}`}>
+      <head>
+        {/* GTM HEAD SNIPPET */}
+      </head>
       <body className="bg-[var(--bg-page)] text-[var(--text-primary)] antialiased" suppressHydrationWarning>
+        {/* GTM BODY SNIPPET */}
         <Header />
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
         <MobileStickyBar />
+        <StickyWhatsAppButton />
+        <CookieConsentBanner />
       </body>
     </html>
   )

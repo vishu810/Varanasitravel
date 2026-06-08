@@ -193,9 +193,18 @@ export default function LeadForm() {
             )}
           </button>
 
-          <div className="flex items-center justify-center gap-2 text-xs text-[#8C7F6E]">
-            <span>🔒</span>
-            <span>We do not spam. We do not share your details. One personal WhatsApp call — that is it.</span>
+          <div className="text-center text-xs text-[#8C7F6E] space-y-3">
+            <p>
+              By submitting, you agree to our{' '}
+              <a href="/privacy-policy" className="text-[#D97706] font-semibold hover:text-[#FBBF24] transition">
+                Privacy Policy
+              </a>
+              .
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <span>🔒</span>
+              <span>We do not spam. We do not share your details. One personal WhatsApp call — that is it.</span>
+            </div>
           </div>
         </motion.div>
       </form>
