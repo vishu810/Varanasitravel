@@ -95,7 +95,7 @@ export default function Footer() {
                 <span className="text-xl">📱</span>
                 <div>
                   <p className="text-[#C4BDB0]">WhatsApp</p>
-                  <p className="text-[#FBBF24] font-semibold">+91 90535 38437</p>
+                  <p className="text-[#FBBF24] font-semibold">+91 93199 74438</p>
                 </div>
               </li>
               <li className="flex items-start gap-2">
