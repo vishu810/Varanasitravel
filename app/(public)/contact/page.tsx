@@ -6,7 +6,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
 
   const contactChannels = [
-    { icon: '📱', label: 'WhatsApp', value: '+91 90535 38437', link: 'https://wa.me/919053538437' },
+    { icon: '📱', label: 'WhatsApp', value: '+91 93199 74438', link: 'https://wa.me/919319974438' },
     { icon: '✉️', label: 'Email', value: 'travel@varunaassi.com', link: 'mailto:travel@varunaassi.com' },
     { icon: '📍', label: 'Office', value: 'Varanasi, Uttar Pradesh, India', link: '#' },
   ]

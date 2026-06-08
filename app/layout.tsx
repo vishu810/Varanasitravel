@@ -3,7 +3,6 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans, Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import WhatsAppButton from '@/components/shared/WhatsAppButton'
 import MobileStickyBar from '@/components/layout/MobileStickyBar'
 import CookieConsentBanner from '@/components/shared/CookieConsentBanner'
 import StickyWhatsAppButton from '@/components/shared/StickyWhatsAppButton'
@@ -46,7 +45,6 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <WhatsAppButton />
         <MobileStickyBar />
         <StickyWhatsAppButton />
         <CookieConsentBanner />

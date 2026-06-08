@@ -6,8 +6,8 @@ import { Suspense } from 'react'
 
 function ThankYouContent() {
   const name = useSearchParams().get('name') || 'there'
-  const whatsappNumber = '+91 90535 38437'
-  const whatsappLink = 'https://wa.me/919053538437'
+  const whatsappNumber = '+91 93199 74438'
+  const whatsappLink = 'https://wa.me/9319974438'
 
   const expectations = [
     "We'll ask about your travel dates and group size",
