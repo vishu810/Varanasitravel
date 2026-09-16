@@ -69,3 +69,17 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
     />
   )
 }
+
+export function pageMetadata(title: string, description: string, path: string): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: { title, description, url: absoluteUrl(path), type: 'website' },
+    twitter: { card: 'summary_large_image', title, description },
+  }
+}
+
+export function noindexMetadata(title: string, description: string): Metadata {
+  return { title, description, robots: { index: false, follow: false } }
+}
