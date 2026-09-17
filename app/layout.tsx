@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/shared/WhatsAppButton'
 import MobileStickyBar from '@/components/layout/MobileStickyBar'
+import { JsonLd, organizationJsonLd, siteMetadata, websiteJsonLd } from '@/lib/seo'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -21,13 +22,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: 'Varunaassi — Plan Your Varanasi Trip',
-    template: '%s | Varunaassi',
-  },
-  description: 'Experience the real Varanasi. Personalised itineraries for spiritual journeys, ghat walks, Ganga Aarti & hidden experiences. Free trip planning.',
-}
+export const metadata: Metadata = siteMetadata
 
 export default function RootLayout({
   children,
@@ -37,6 +32,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${jakarta.variable} ${inter.variable}`}>
       <body className="bg-[var(--bg-page)] text-[var(--text-primary)] antialiased" suppressHydrationWarning>
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         <Header />
         <main>{children}</main>
         <Footer />

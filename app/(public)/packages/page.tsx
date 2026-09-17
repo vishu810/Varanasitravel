@@ -72,7 +72,7 @@ export default function Packages() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 -z-10">
-          <img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=1600&q=80" alt="Varanasi" className="h-full w-full object-cover brightness-[0.3]" />
+          <img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=1600&q=80" alt="Varanasi ghats along the Ganges at sunrise" className="h-full w-full object-cover brightness-[0.3]" />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-page)]/90 to-[var(--bg-page)]" />
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">

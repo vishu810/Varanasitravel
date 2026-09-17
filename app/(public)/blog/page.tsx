@@ -1,5 +1,12 @@
-'use client'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Blog unavailable',
+  description: 'The Varunaassi blog is currently unavailable.',
+  robots: { index: false, follow: true },
+  alternates: { canonical: '/blog' },
+}
 
 export default function Blog() {
   return (
