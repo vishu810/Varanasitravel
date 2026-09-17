@@ -33,9 +33,15 @@ export function absoluteUrl(path = '/') {
 export function organizationJsonLd() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'LocalBusiness'],
     name: SITE_NAME,
     url: SITE_URL,
+    areaServed: {
+      '@type': 'City',
+      name: 'Varanasi',
+      containedInPlace: { '@type': 'State', name: 'Uttar Pradesh' },
+    },
+    knowsAbout: ['Varanasi travel planning', 'Ganga Aarti', 'Varanasi ghats', 'Kashi Vishwanath', 'Sarnath'],
   }
 }
 
