@@ -48,6 +48,30 @@ export function websiteJsonLd() {
   }
 }
 
+export function serviceJsonLd({
+  name,
+  description,
+  path,
+}: {
+  name: string
+  description: string
+  path: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    provider: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    areaServed: 'Varanasi, Uttar Pradesh, India',
+    url: absoluteUrl(path),
+  }
+}
+
 export function breadcrumbJsonLd(items: Array<{ name: string; path: string }>) {
   return {
     '@context': 'https://schema.org',
