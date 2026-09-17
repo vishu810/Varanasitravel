@@ -7,14 +7,8 @@ function validateDatabaseEnv() {
   const isDev = process.env.NODE_ENV === 'development'
   const pooledUrl = process.env.NEON_DATABASE_URL
   
-  if (!pooledUrl) {
-    const error = 'NEON_DATABASE_URL environment variable is not set. Please check .env.local (development) or Vercel environment variables (production).'
-    console.error(`[Prisma] ${error}`)
-    // In production, this will cause the app to fail to start, which is appropriate
-    // In development, we still proceed but the first DB operation will fail with a clear error
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error(error)
-    }
+  if (!pooledUrl && !isDev) {
+    console.warn('[Prisma] NEON_DATABASE_URL is unavailable during build; database access will be validated at request time.')
   }
 }
 
