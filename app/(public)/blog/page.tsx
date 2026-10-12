@@ -12,25 +12,25 @@ const posts = [
     category: 'Spiritual & Culture',
     title: 'The Spiritual Heart of India: Top Places to Visit in Varanasi',
     excerpt: 'Discover the ancient temples, beautiful ghats, and unique culture of Varanasi. Explore Kashi Vishwanath, Dashashwamedh, and the Ganga Aarti.',
-    href: '/varanasi-travel-guide/',
+    href: '/blog/varanasi-travel-guide',
   },
   {
     category: 'Itineraries',
     title: '2 Days in Varanasi: A First-Time Visitor’s Itinerary',
     excerpt: 'Short on time? Here is a perfect 48-hour itinerary to catch the spiritual essence of Banaras, from sunrise boat rides to the old city alleys.',
-    href: '/2-days-in-varanasi-itinerary/',
+    href: '/blog/2-days-in-varanasi-itinerary',
   },
   {
     category: 'Food & Drink',
     title: 'What Should You Eat in Varanasi? A Street Food Guide',
     excerpt: 'Dive into the rich food culture of Banaras. From classic Kachori Sabzi and Tamatar Chaat to seasonal Malaiyo and famous Banarasi Paan.',
-    href: '/what-to-eat-in-varanasi/',
+    href: '/blog/what-to-eat-in-varanasi',
   },
   {
     category: 'Travel Tips',
     title: 'The Best Time to Visit Varanasi',
     excerpt: 'Find out the optimal time to plan your trip. Learn what to expect during winter, summer heat, monsoon, and Dev Deepawali.',
-    href: '/best-time-to-visit-varanasi/',
+    href: '/blog/best-time-to-visit-varanasi',
   },
 ]
 
