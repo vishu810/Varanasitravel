@@ -1,12 +1,13 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from '@/lib/constants'
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
 
   const contactChannels = [
-    { icon: '📱', label: 'WhatsApp', value: '+91 90535 38437', link: 'https://wa.me/919053538437' },
+    { icon: '📱', label: 'WhatsApp', value: WHATSAPP_DISPLAY, link: `https://wa.me/${WHATSAPP_NUMBER}` },
     { icon: '✉️', label: 'Email', value: 'travel@varunaassi.com', link: 'mailto:travel@varunaassi.com' },
     { icon: '📍', label: 'Office', value: 'Varanasi, Uttar Pradesh, India', link: '#' },
   ]

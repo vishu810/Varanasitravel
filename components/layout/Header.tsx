@@ -15,6 +15,7 @@ export default function Header() {
           <Link href="/packages" className="text-[#402813] font-medium hover:text-[#D97706] transition">Packages</Link>
           <Link href="/itinerary" className="text-[#402813] font-medium hover:text-[#D97706] transition">Build Itinerary</Link>
           <Link href="/about" className="text-[#402813] font-medium hover:text-[#D97706] transition">About</Link>
+          <Link href="/blog" className="text-[#402813] font-medium hover:text-[#D97706] transition">Blog</Link>
           <Link href="/contact" className="text-[#402813] font-medium hover:text-[#D97706] transition">Contact</Link>
         </nav>
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>☰</button>
@@ -25,6 +26,7 @@ export default function Header() {
           <Link href="/packages" className="text-[#402813] font-medium hover:text-[#D97706] transition">Packages</Link>
           <Link href="/itinerary" className="text-[#402813] font-medium hover:text-[#D97706] transition">Build Itinerary</Link>
           <Link href="/about" className="text-[#402813] font-medium hover:text-[#D97706] transition">About</Link>
+          <Link href="/blog" className="text-[#402813] font-medium hover:text-[#D97706] transition">Blog</Link>
           <Link href="/contact" className="text-[#402813] font-medium hover:text-[#D97706] transition">Contact</Link>
         </div>
       )}

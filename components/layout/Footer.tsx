@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { WHATSAPP_DISPLAY, WHATSAPP_NUMBER } from '@/lib/constants'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -53,6 +54,7 @@ export default function Footer() {
                 { label: 'Experiences', href: '/experiences' },
                 { label: 'Packages', href: '/packages' },
                 { label: 'Build Itinerary', href: '/itinerary' },
+                { label: 'Travel Blog', href: '/blog' },
               ].map((link) => (
                 <li key={`${link.href}-${link.label}`}>
                   <Link
@@ -94,7 +96,7 @@ export default function Footer() {
                 <span className="text-xl">📱</span>
                 <div>
                   <p className="text-[#C4BDB0]">WhatsApp</p>
-                  <p className="text-[#FBBF24] font-semibold">+91 90535 38437</p>
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} className="text-[#FBBF24] font-semibold hover:underline">{WHATSAPP_DISPLAY}</a>
                 </div>
               </li>
               <li className="flex items-start gap-2">
